@@ -260,4 +260,13 @@ describe('earth setup module tails', () => {
     __setPipelineCtorFails(false)
     expect(s.pipeline).toBeNull()
   })
+
+  test('buildMoonLod returns an empty LOD when no loader is provided', async () => {
+    const { buildMoonLod: lodFn } = await import('@earth/earth/scene/meshes.js')
+    const THREE = await import('three')
+
+    const lod = await lodFn({ THREE, loader: null })
+
+    expect(lod).toBeTruthy()
+  })
 })
